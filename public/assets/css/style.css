@@ -1,0 +1,66 @@
+.family-font {
+    font-family: Dosis;
+}
+
+.font-size-14 {
+    font-size: 14px !important;
+}
+
+.font-size-13 {
+    font-size: 13px !important;
+}
+
+label {
+    font-weight: 100 !important;
+    margin-bottom: 0;
+}
+
+.container-fluid {
+    margin-top: 10px;
+}
+
+.xs-show {
+    display: none;
+}
+
+@font-face {
+    src: url(../../fonts/Dosis/Dosis-VariableFont:wght.ttf);
+    font-family: Dosis;
+}
+
+@font-face {
+    src: url(../../fonts/Gayathri/Gayathri-Bold.ttf);
+    font-family: GayathriBold;
+}
+
+@font-face {
+    src: url(../../fonts/Gayathri/Gayathri-Regular.ttf);
+    font-family: GayathriRegular;
+}
+
+@font-face {
+    src: url(../../fonts/Gayathri/Gayathri-Thin.ttf);
+    font-family: GayathriThin;
+}
+
+@font-face {
+    src: url(../../fonts/Jura/Jura-VariableFont:wght.ttf);
+    font-family: Jura;
+}
+
+@font-face {
+    src: url(../../fonts/Marmelad/Marmelad-Regular.ttf);
+    font-family: Marmelad;
+}
+
+@media (max-width: 768px) {
+    .xs-hide {
+        display: none;
+    }
+    .xs-show {
+        display: block;
+    }
+    .container-fluid {
+        margin-top: 5px;
+    }
+}
