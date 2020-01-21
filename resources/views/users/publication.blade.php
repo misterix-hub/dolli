@@ -8,39 +8,6 @@
             @include('included.users.profile_side_bar')
             <div class="col-md-6">
 
-                <!--<div class="card font-size-14">                    
-                    <div class="card-body">
-                        <form action="{{ route('publicationStore') }}" method="post">
-                            @csrf
-                            <a href="" class="float-right">
-                                <small>
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                    PLUS
-                                </small>
-                            </a>
-                            <span class="text-muted">
-                                <small>
-                                    <i class="fas fa-globe-africa"></i>
-                                    FAIRE UNE PUBLICATION
-                                </small>
-                            </span><br />
-
-                            <textarea name="texte" id="texte"  rows="2" class="font-size-14 mt-3"
-                            style="border: none; outline: none; border-bottom: 1px solid #CCC; width: 100%;"
-                            rows="3" placeholder="Saisir la publicatin ici ..."></textarea>
-                            <label for="image" class="text-muted">
-                                <i class="fas fa-file-image text-warning"></i>
-                                <small><b>Image ou photo</b></small>
-                            </label>
-                            <input type="file" id="image" name="image" style="width: 0; height: 0; outline: none;">
-
-                            <button type="submit" class="btn bg-gradient-primary pl-3 pr-3 font-size-13 float-right">
-                                Partager
-                            </button>
-                        </form>
-                    </div>
-                </div>-->
-
                 @foreach (App\Publication::where('id', $id)->get() as $publication)    
                     <!-- Box Comment -->
                     <div class="card card-widget font-size-14">
@@ -150,8 +117,9 @@
                     <!-- /.card -->
                     @endforeach
                     <div class="text-center font-size-14">
-                        <a href="{{ route('uIndex') }}">
-                            <b>Retour aux publications</b>
+                        <a href="{{ route('uIndex') }}" class="btn btn pl-3 pr-3 text-light font-size-14" style="background-color: #e66937;">
+                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                            Retour aux publications
                         </a>
                     </div><br />
 

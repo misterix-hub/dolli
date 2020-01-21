@@ -36,7 +36,7 @@
                 <h1 class="mb-0">
                     Dolli    
                 </h1>
-                <small style="color: orange;">La plate-forme des uryas</small><br /><br />
+                <span style="color: orangered;">La plate-forme des uryas</span><br /><br />
 
                 <h5 style="line-height: 30px; text-align: justify;">
                     Si vous n'avez pas encore de compte, veuillez le créer dès
@@ -46,7 +46,8 @@
                 </h5><br />
 
                 <div class="text-right">
-                    <a href="{{ route('register') }}" class="btn bg-gradient-secondary btn-lg pl-5 pr-5">
+                    <a href="{{ route('register') }}" style="background-color: #e66937;"
+                    class="btn btn-lg pl-5 pr-5 text-light">
                         Créer un compte
                     </a>
                 </div>

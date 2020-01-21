@@ -5,21 +5,41 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CodeEmail;
 use App\User;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
     public function registerForm(Request $request) {
 
-        $code = rand(154789, 986899);
+        if (count(User::where('email', $request->email)->get()) != 0) {
+            return back()->with('error', "Email déjà utilisé !");
+        } else {
+            $code = rand(154789, 986899);
+            
+            $code_email = new CodeEmail;
+            $code_email->email = $request->email;
+            $code_email->code = $code;
+            $code_email->save();
+    
+            session()->put('email', $request->email);
+    
+            $to_name = "Dolli";
+    
+            $to_email = $request->email;
+            $data = array(
+                'nom' => $request->email,
+                'code' => $code
+            );
+    
+            Mail::send('mails.code_password', $data, function ($message) use ($to_name, $to_email) {
+                $message->to($to_email)
+                ->subject("Confirmation email");
+            });
+    
+            return redirect(route('mail_sent'));
+        }
         
-        $code_email = new CodeEmail;
-        $code_email->email = $request->email;
-        $code_email->code = $code;
-        $code_email->save();
 
-        session()->put('email', $request->email);
-
-        return redirect(route('mail_sent'));
     }
 
     public function passwordForm(Request $request) {

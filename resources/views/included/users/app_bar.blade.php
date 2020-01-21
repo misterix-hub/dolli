@@ -36,26 +36,11 @@
                 aria-expanded="false">
                 <i class="fa fa-envelope" aria-hidden="true"></i>
                 <small id="nbMessageContainer">
-                    <?php $nb_messages  = 0; ?>
-                    @foreach (App\Contact::where('user1_id', session()->get('id'))->orWhere('user2_id', session()->get('id'))->orderByDesc('id')->get() as $contact)
-                        
-                        @foreach (Illuminate\Support\Facades\DB::select('SELECT * FROM messages
-                        WHERE ((user_id = ? AND dest_id = ?) OR (user_id = ? AND dest_id = ?)) AND dest_id = ? AND lu = 0 ORDER BY id DESC LIMIT 1', [
-                            $contact->user2_id, $contact->user1_id, $contact->user1_id, $contact->user2_id, session()->get('id')
-                        ]) as $message)
-                            @foreach (App\User::where('id', $message->user_id)->get() as $user)
-                                <?php $nb_messages += 1; ?>
-                            @endforeach
-                        @endforeach
-
-                    @endforeach
-
-                    @if ($nb_messages != 0)
+                    @if (count(App\Message::where('dest_id', session()->get('id'))->where('lu', 0)->get()) != 0)
                         <span class="badge badge-danger pt-1 pb-1" style="margin-left: -4px;">
-                            {{ $nb_messages }}
+                            {{ count(App\Message::where('dest_id', session()->get('id'))->where('lu', 0)->get()) }}
                         </span>
                     @endif
-
                 </small>
             </a>
            

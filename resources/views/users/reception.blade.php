@@ -24,7 +24,7 @@
                             Clé privée
                         </label>
                         <input type="text" class="form-control font-size-13" id="cle" name="cle" placeholder="Saisir la clé privée ici ...">
-                        <button type="submit" id="rcpBtn" class="btn bg-gradient-primary font-size-13 pt-2 pb-2 mt-2 btn-block">
+                        <button type="submit" id="rcpBtn" class="btn font-size-13 pt-2 pb-2 mt-2 btn-block text-light" style="background-color: #e66937;">
                             Soumettre
                         </button>
                     </div>

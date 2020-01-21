@@ -35,11 +35,11 @@
                                         </div>
                                         <div class="card-footer">
                                             <div class="text-right">
-                                                <a href="{{ route('uMessage', $user->id) }}" class="btn btn-sm bg-gradient-primary font-size-13">
+                                                <a href="{{ route('uMessage', $user->id) }}" class="btn text-light font-size-13 pl-3 pr-3" style="background-color: #e66937;">
                                                     <i class="fas fa-comments"></i>
                                                     Message
                                                 </a>
-                                                <a href="#" class="btn btn-sm btn-default font-size-13">
+                                                <a href="#" class="btn bg-gradient-secondary font-size-13 pl-3 pr-3">
                                                     <i class="fa fa-user-circle" aria-hidden="true"></i>
                                                     Voir le profil
                                                 </a>

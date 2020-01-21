@@ -41,7 +41,7 @@
                     </div>
                 </div>-->
 
-                @foreach (App\Publication::orderByDesc('id')->get() as $publication)    
+                @forelse (App\Publication::orderByDesc('id')->get() as $publication)    
                     <!-- Box Comment -->
                     <div class="card card-widget font-size-14">
                         <div class="card-header">
@@ -80,7 +80,7 @@
                         <div class="card-body">
 
                             @if ($publication->image != "")
-                                <img class="img-fluid pad" src="{{ URL::asset('db/publication/' . $publication->image) }}" alt="Photo">
+                                <img class="img-fluid pad rounded" width="100%" src="{{ URL::asset($publication->image) }}" alt="{{$publication->image}}">
                             @endif
 
                             @if ($publication->texte != "")
@@ -160,7 +160,12 @@
                         <!-- /.card-footer -->
                     </div>
                     <!-- /.card -->
-                @endforeach
+                @empty
+                    <div class="text-center">
+                        <br /><br /><br />
+                        <h1><i class="fas fa-globe-africa fa-4x text-muted"></i></h1>
+                    </div>
+                @endforelse
 
             </div>
             <div class="col-md-3">
@@ -177,13 +182,13 @@
                             </ol>
                             <div class="carousel-inner" role="listbox">
                                 <div class="carousel-item active">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="First slide">
+                                    <img src="{{ URL::asset('db/publicites/image.png') }}" class="rounded" width="100%" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="Second slide">
+                                    <img src="{{ URL::asset('db/publicites/01.jpg') }}" class="rounded" width="100%" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="Third slide">
+                                    <img src="{{ URL::asset('db/publicites/02.jpg') }}" class="rounded" width="100%" alt="Third slide">
                                 </div>
                             </div>
                             <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
@@ -236,6 +241,12 @@
             </div>
         </div>
     </div>
+
+    <a href="{{ route('uPublier') }}" class="btn font-size-14 pl-3 pr-3 text-light"
+    style="border-radius: 25px; position: fixed; right: 15px; bottom: 15px; background-color: #e66937;">
+        <i class="fas fa-globe-africa"></i>
+        Publier
+    </a>
 @endsection
 
 @section('js')

@@ -15,13 +15,13 @@
                     class="img-size-50 mr-3 img-circle">
                     <div class="media-body">
                         <h3 class="dropdown-item-title font-size-13">
-                            <b class="text-muted">{{ $user->name }}</b>
+                            <b class="text-primary">{{ $user->name }}</b>
                         </h3>
-                        <p class="text-sm text-muted mb-0">
+                        <p class="text-sm mt-0" style="color: #000; margin-bottom: -5px;">
                             @if (strlen($message->texte) > 20)
-                                {{ substr($message->texte, 0, 20) }} ...
+                                <b>{{ substr($message->texte, 0, 20) }} ...</b>
                             @else
-                                {{ $message->texte }}
+                                <b>{{ $message->texte }}</b>
                             @endif
                         </p>
                         <small class="text-muted">
@@ -42,4 +42,10 @@
 
 @endforeach
 
-<?php session()->put('nb_messages', $nb_messages) ?>
+@if ($nb_messages == 0)
+    <div class="text-center text-muted">
+        <br /><br />
+        <i class="fa fa-trash text-muted fa-3x" aria-hidden="true"></i><br />
+        Pas de message non lu !
+    </div>
+@endif

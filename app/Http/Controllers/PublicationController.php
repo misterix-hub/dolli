@@ -10,16 +10,39 @@ use App\Commentaire;
 class PublicationController extends Controller
 {
     public function store(Request $request) {
-        if (trim($request->text) == "" && trim($request->image)) {
+        if (trim($request->text) == "" && trim($request->image) == "") {
             return back();
         } else {
             $publication = new Publication;
             $publication->user_id = session()->get('id');
             $publication->texte = $request->texte;
-            $publication->image = $request->image;
-            $publication->save();
 
-            return back();
+            if ($request->image != "") {
+
+                $target_dir = "db/publication/";
+
+                $target_file = $target_dir . basename($_FILES["image"]["name"]);
+                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+                if ($_FILES["image"]["size"] > 500000) {
+                    return back()->with('error', "La taille de l'image est trop grande !");
+                }
+
+                if ($imageFileType != "png" && $imageFileType != "jpg" && $imageFileType != "jpeg") {
+                    return back()->with('error', "Le type de l'image n'est pas autorisé !");
+                }
+
+                $target_file = $target_dir . session()->get('id') . time() . "." . $imageFileType;
+
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                    $publication->image = $target_file;
+                }
+
+                $publication->save();
+
+            }
+
+            return redirect(route('uIndex'));
         }
 
     }

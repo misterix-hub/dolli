@@ -29,7 +29,7 @@
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <a name="" id="" class="btn bg-gradient-primary pl-4 pr-4" href="{{ route('register') }}" role="button">
+            <a name="" id="" class="btn pl-4 pr-4 text-light" style="background-color: #e66937;" href="{{ route('register') }}" role="button">
                 Créer un compte
             </a>
         </form>

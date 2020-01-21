@@ -47,12 +47,12 @@
                                 <table width="100%">
                                     <tr>
                                         <td class="pr-2 pl-1">
-                                            <input type="text" name="texte" id="texte" class="form-control font-size-14"
+                                            <input type="text" name="texte" id="texte" autocomplete="off" class="form-control font-size-14"
                                             style="border-radius: 20px; border: 1px solid #AAA;" placeholder="Entrée pour envoyer le message ...">
                                         </td>
                                         <td width="40" class="pr-1">
-                                            <button type="submit" id="storeMessageBtn" class="btn bg-gradient-primary rounded-circle" style="width: 40px; height: 40px; padding-left: 10px;">
-                                                <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                            <button type="submit" id="storeMessageBtn" class="btn bg-gradient-secondary rounded-circle" style="width: 40px; height: 40px; padding-left: 15px;">
+                                                <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -81,7 +81,7 @@
                         </div><br /><br />
                         @endforeach
                         <div class="text-center">
-                            <a href="{{ route('uIndex') }}" class="btn bg-gradient-primary pl-4 pr-4 font-size-14">
+                            <a href="{{ route('uIndex') }}" class="btn bg-gradient-secondary pl-4 pr-4 font-size-14">
                                 Retour à l'accueil
                             </a>
                         </div>

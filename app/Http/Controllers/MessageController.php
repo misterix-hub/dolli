@@ -37,4 +37,8 @@ class MessageController extends Controller
     public function notifications() {
         return view('ajaxView.users.messages');
     }
+
+    public function nbMessages() {
+        return view('ajaxView.users.nb_messages');
+    }
 }

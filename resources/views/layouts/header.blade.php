@@ -39,7 +39,12 @@
     @yield('js')
     <script>
         setInterval(() => {
-            $('#nbNotification').html("<span class='badge badge-danger pt-1 pb-1' style='margin-left: 0;'>{{ session()->get('nb_notifications') }}</span>");
+            $.ajax( {
+                url : "{{ route('nbNotification') }}",
+                success : function (status) {
+                    $('#nbNotification').html(status);
+                }
+            });
         }, 3000);
 
         setInterval(() => {
@@ -61,7 +66,12 @@
         }, 3000);
 
         setInterval(() => {
-            $('#nbMessageContainer').html("<span class='badge badge-danger pt-1 pb-1' style='margin-left: -4px;'>{{ session()->get('nb_messages') }}</span>");
+            $.ajax( {
+                url : "{{ route('nbMessageNotification') }}",
+                success : function (status) {
+                    $('#nbMessageContainer').html(status);
+                }
+            });
         }, 3000);
     </script>
     

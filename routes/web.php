@@ -42,8 +42,9 @@ Route::get('register/datas', function () {
     if(!session()->has('password')) {
         return redirect(route('register'));
     } else {
-        $code_email = CodeEmail::where('email', session()->get('email'))->where('code', session()->get('code'));
-        $code_email->delete();
+        Illuminate\Support\Facades\DB::delete("DELETE FROM code_emails WHERE email = ? AND code = ?", [
+            session()->get('email'), session()->get('code')
+        ]);
         return view('nom_profession');
     }
 
@@ -105,6 +106,10 @@ Route::get('users/message/{id}', function($id) {
     ]);
 })->name('uMessage');
 
+Route::get('users/publier', function() {
+    return view('users.publier');
+})->name('uPublier');
+
 Route::get('users/messages/discussion/box', 'MessageController@discussion')->name('getMessagesBox');
 
 Route::get('users/messages/store/ajax', 'MessageController@store')->name('uStoreMessage');
@@ -128,11 +133,13 @@ Route::post('users/publications/{id}/comments/{post_id}/', 'CommentaireControlle
 Route::get('users/publications/{id}/comments', 'PublicationController@details')->name('publication');
 
 Route::get('users/messages/notifcations/list', 'MessageController@notifications')->name('messagesNotifications');
+Route::get('users/messages/notifcations/list/nombres', 'MessageController@nbMessages')->name('nbMessageNotification');
 
 
 Route::get('logout', function () {
     session()->forget('id');
     session()->forget('email');
+    session()->forget('code');
     session()->forget('cle_privee');
     session()->forget('cle_publique');
     session()->forget('avatar');
