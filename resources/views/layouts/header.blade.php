@@ -13,15 +13,17 @@
     <link rel="stylesheet" href="{{ URL::asset('plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('plugins/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/croppie/croppie.css') }}">
     @yield('css')
     <title>Dolli</title>
 </head>
-<body style="background-color: #EEE;" class="sidebar-collapse">
+<body style="" class="sidebar-collapse">
 
     @yield('content')
 
     <script src="{{ URL::asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ URL::asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/croppie/croppie.js') }}"></script>
     <script>
     $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -38,6 +40,45 @@
     <script src="{{ URL::asset('dist/js/demo.js') }}"></script>
     @yield('js')
     <script>
+        $(document).ready(function () {
+            
+            $('#popoverMessage').click(function () {
+                $(this).popover('show');
+            });
+            $('#popoverNotification').click(function () {
+                $(this).popover('show');
+            })
+
+            $('#soldeForm').submit(function(e) {
+                e.preventDefault();
+                if ($('#cle_prv').val().trim() != "") {
+                    $('#soldeContainer').html("<img src=\"{{ URL::asset('assets/images/30.gif') }}\" width='100' />");
+                    $.ajax( {
+                        url : "{{ route('getSolde') }}",
+                        data : "key=" + $('#cle_prv').val(),
+                        success : function (status) {
+                            $('#soldeContainer').html(status);
+                        }
+                    });
+                }
+            });
+
+            $('#sendForm').submit(function(e) {
+                e.preventDefault();
+                if ($('#cle_publique').val() != "" && $('#montant').val() != "") {    
+                    $('#envoyerContainer').html("<img src=\"{{ URL::asset('assets/images/30.gif') }}\" width='100' />");
+                    $.ajax( {
+                        url : "{{ route('destEnvoi') }}",
+                        data : "key=" + $('#cle_publique').val() + "&montant=" + $('#montant').val(),
+                        success : function (status) {
+                            $('#envoyerContainer').html(status);
+                            $('#montant').val("");
+                        }
+                    });
+                }
+            });
+        });
+        
         setInterval(() => {
             $.ajax( {
                 url : "{{ route('nbNotification') }}",

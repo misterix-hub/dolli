@@ -3,7 +3,7 @@
 @section('content')
     @include('included.users.app_bar')
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="margin-top: 68px;">
         <div class="row">
             @include('included.users.profile_side_bar')
             <div class="col-md-6">
@@ -16,7 +16,20 @@
                                 @foreach (App\User::where('id', $publication->user_id)->get() as $user)
                                     <img class="img-circle" style="border: 2px solid #CCC; padding: 2px;"
                                     src="{{ URL::asset('db/avatar/' . $user->avatar) }}" alt="User Image">
-                                    <span class="username font-size-14 pt-1"><a href="#">{{ $user->name }}</a></span>
+                                    
+                                    <div class="dropdown">
+                                        <a class="users-list-name font-size-13" style="padding-left: 10px;" href="#" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"><b class="text-primary">{{ $user->name }}</b></a>
+
+                                        <div class="dropdown-menu dropdown-menu-right font-size-13" aria-labelledby="triggerId">
+                                            <h6 class="dropdown-header font-size-13">{{ $user->name }}</h6>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#!">Profil de {{ $user->name }}</a>
+                                            <a class="dropdown-item" href="{{ route('uMessage', $user->id) }}">
+                                                Envoyer un message
+                                            </a>
+                                        </div>
+                                    </div>
                                 @endforeach
                                 <span class="description">Publié à {{ substr($publication->created_at, 11, 5) }} le
                                     {{ substr($publication->created_at, 8, 2) }} / {{ substr($publication->created_at, 5, 2) }} /
@@ -34,7 +47,7 @@
                         <div class="card-body">
 
                             @if ($publication->image != "")
-                                <img class="img-fluid pad" src="{{ URL::asset('db/publication/' . $publication->image) }}" alt="Photo">
+                                <img class="img-fluid pad" width="100%"src="{{ URL::asset($publication->image) }}" alt="Photo">
                             @endif
 
                             @if ($publication->texte != "")
@@ -106,7 +119,7 @@
                                 src="{{ URL::asset('db/avatar/' . session()->get('avatar')) }}" alt="Alt Text">
                                 <!-- .img-push is used to add margin to elements next to floating images -->
                                 <div class="img-push">
-                                    <input type="text" required class="form-control form-control-sm" name="texte" style="border-radius: 15px;"
+                                    <input type="text" autocomplete="off" required class="form-control form-control-sm" name="texte" style="border-radius: 15px;"
                                         placeholder="Entrée pour poster le commentaire">
                                 </div>
                             </form>
@@ -114,123 +127,97 @@
                         <!-- /.card-footer -->
                     </div>
 
-                    <!-- /.card -->
-                    @endforeach
-                    <div class="text-center font-size-14">
-                        <a href="{{ route('uIndex') }}" class="btn btn pl-3 pr-3 text-light font-size-14" style="background-color: #e66937;">
-                            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                            Retour aux publications
-                        </a>
-                    </div><br />
+                <!-- /.card -->
+                @endforeach
+                <div class="text-center font-size-14">
+                    <a href="{{ route('uIndex') }}" class="btn bg-gradient-secondary pl-4 pr-4 font-size-13">
+                        Retour aux publications
+                    </a>
+                </div><br />
 
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <small>PUBLICITÉS ET ANNONCES</small>
-                    </div>
-                    <div class="card-body">
-                        <div id="carouselId" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselId" data-slide-to="1"></li>
-                                <li data-target="#carouselId" data-slide-to="2"></li>
-                            </ol>
-                            <div class="carousel-inner" role="listbox">
-                                <div class="carousel-item active">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="First slide">
+            <div class="col-md-3 xs-hide"><br /><br />
+                <div class="card mt-3">
+                    <div style="overflow: hidden; position: fixed; width: 24.5%; bottom: 0; border-left: 1px solid #CCC; top: 60px;">
+                        <div class="card-header">
+                            <small>PUBLICITÉS ET ANNONCES</small>
+                        </div>
+                        <div class="card-body">
+                            <div id="carouselId" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carouselId" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carouselId" data-slide-to="1"></li>
+                                    <li data-target="#carouselId" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <div class="carousel-item active">
+                                        <img src="{{ URL::asset('db/publicites/image.png') }}" class="rounded" width="100%" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ URL::asset('db/publicites/01.jpg') }}" class="rounded" width="100%" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="{{ URL::asset('db/publicites/02.jpg') }}" class="rounded" width="100%" alt="Third slide">
+                                    </div>
                                 </div>
-                                <div class="carousel-item">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="{{ URL::asset('db/publication/image.png') }}" width="100%" alt="Third slide">
+                                <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="card" style="margin: 0 20px;">
+                            <div class="card-header font-size-13">
+                                
+                                QESLQUES UNS DES MEMBRES
+          
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
                             </div>
-                            <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                            </a>
-                            <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                            </a>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <ul class="users-list clearfix">
+                                    @forelse (App\User::where('id', '<>', session()->get('id'))->orderByDesc('id')->limit(8)->get() as $membre)
+                                        <li>
+                                            <div class="dropdown">
+                                                <a  href="#!" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                        <img src="{{ URL::asset('db/avatar/' . $membre->avatar) }}" alt="User Image"
+                                                        style="border: 2px solid #CCC; padding: 2px;">
+                                                        <a class="users-list-name font-size-13">{{ $membre->name }}</a>
+                                                </a>
+                                                <div class="dropdown-menu font-size-13" aria-labelledby="triggerId">
+                                                    <a class="dropdown-item" href="#!">Profil de {{ $membre->name }}</a>
+                                                    <a class="dropdown-item" href="{{ route('uMessage', $membre->id) }}">Envoyer un message</a>
+                                                </div>
+                                            </div>
+                                            
+                                        </li> 
+                                    @empty
+                                        <div class="text-center font-size-14"><br />
+                                            <i class="fa fa-users" aria-hidden="true"></i><br />
+                                            Pas plus de membres !
+                                        </div>
+                                    @endforelse
+                                </ul>
+                                <!-- /.users-list -->
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer text-center font-size-13">
+                                <a href="javascript::">Découvrir plus de membres</a>
+                            </div>
+                            <!-- /.card-footer -->
                         </div>
+
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <div>
-                            <small>QUELQUES UNS DE NOS MEMBRES</small>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="users-list clearfix">
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user1-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander Pierce</a>
-                                <span class="users-list-date">Today</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user8-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Norman</a>
-                                <span class="users-list-date">Yesterday</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user7-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Jane</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user6-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">John</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user2-160x160.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander</a>
-                                <span class="users-list-date">13 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user5-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Sarah</a>
-                                <span class="users-list-date">14 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user4-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Nora</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user3-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Nadia</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user1-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander Pierce</a>
-                                <span class="users-list-date">Today</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user8-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Norman</a>
-                                <span class="users-list-date">Yesterday</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user7-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">Jane</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="{{ URL::asset('dist/img/user6-128x128.jpg') }}" alt="User Image">
-                                <a class="users-list-name" href="#">John</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                        </ul>
-                        <!-- /.users-list -->
-                    </div>    
-                    <!-- /.card-footer -->
                 </div>
             </div>
         </div>

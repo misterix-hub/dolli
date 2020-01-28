@@ -1,8 +1,8 @@
-@if (count(App\User::where('id', session()->get('id'))->where('cle_privee', sha1($key))->get()) == 0)
-    <span class="text-danger">Clé incorrecte !</span>
-@else
-    @foreach (App\User::where('cle_privee', sha1($key))->get() as $user)
+@foreach (App\User::where('id', session()->get('id'))->get() as $user)
+    @if (\Hash::check($key, $user->cle_privee))
         {{ $user->solde }}
-        <small class="font-size-14"><b>urys</b></small>
-    @endforeach
-@endif
+        <small class="font-size-14"><b>uryas</b></small>
+    @else
+        <span class="text-danger">Clé incorrecte !</span>
+    @endif
+@endforeach

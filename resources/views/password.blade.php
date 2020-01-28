@@ -26,10 +26,10 @@
                 <form action="{{ route('passwordForm') }}" method="post">
                     @csrf
                     <label for="password">Mot de passe</label>
-                    <input type="password" minlength="6" id="password" name="password" class="form-control" placeholder="Saisir dans le champs ...">
+                    <input type="password" minlength="6" required id="password" name="password" class="form-control" placeholder="Saisir dans le champs ...">
 
                     <label for="password_confirm" class="mt-2">Confirmer le mot de passe</label>
-                    <input type="password" minlength="6" id="password_confirm" name="password_confirm" class="form-control" placeholder="Saisir dans le champs ...">
+                    <input type="password" minlength="6" required id="password_confirm" name="password_confirm" class="form-control" placeholder="Saisir dans le champs ...">
                     
                     <button type="submit" class="btn bg-gradient-primary btn-block mt-3 mb-2">
                         Suivant

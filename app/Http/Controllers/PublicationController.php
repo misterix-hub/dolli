@@ -10,7 +10,7 @@ use App\Commentaire;
 class PublicationController extends Controller
 {
     public function store(Request $request) {
-        if (trim($request->text) == "" && trim($request->image) == "") {
+        if (trim($request->texte) == "" && trim($request->image) == "") {
             return back();
         } else {
             $publication = new Publication;
@@ -38,9 +38,9 @@ class PublicationController extends Controller
                     $publication->image = $target_file;
                 }
 
-                $publication->save();
-
+                
             }
+            $publication->save();
 
             return redirect(route('uIndex'));
         }
@@ -59,6 +59,13 @@ class PublicationController extends Controller
     }
 
     public function details($id) {
+
+        if (count(Publication::where('id', $id)->get()) == 0) {
+            abort('404');
+        }
+        if (!session()->has('id')) {
+            return redirect(route('login'));
+        }
 
         foreach (Commentaire::where('publication_id', $id)->get() as $commentaire) {
             $commentaire = Commentaire::find($commentaire->id);

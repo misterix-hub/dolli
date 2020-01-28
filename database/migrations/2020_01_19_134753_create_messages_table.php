@@ -19,6 +19,8 @@ class CreateMessagesTable extends Migration
             $table->integer('dest_id');
             $table->text('texte');
             $table->tinyInteger('lu');
+            $table->tinyInteger('rendu_send');
+            $table->tinyInteger('rendu_dest');
             $table->timestamps();
         });
     }

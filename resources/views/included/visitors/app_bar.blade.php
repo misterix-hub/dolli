@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-light bg-light family-font">
+<nav class="navbar navbar-expand-sm navbar-light bg-light family-font" style="border-bottom: 1px solid #CCC;">
     <a class="navbar-brand mr-4" href="#">
         Dolli
     </a>

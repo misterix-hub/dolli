@@ -13,7 +13,7 @@
                 <form action="{{ route('registerForm') }}" method="post">
                     @csrf
                     @if ($message = Session::get('error'))
-                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Close</span>
@@ -22,7 +22,7 @@
                         </div>
                     @endif
                     <label for="email">Email</label>
-                    <input type="email" required id="email" name="email" class="form-control" placeholder="Saisir dans le champs ...">
+                    <input type="email" required id="email" maxlength="50" minlength="10" name="email" class="form-control" placeholder="Saisir dans le champs ...">
                     
                     <button type="submit" class="btn bg-gradient-primary btn-block mt-3 mb-2">
                         Soumettre

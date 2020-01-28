@@ -14,6 +14,8 @@ class MessageController extends Controller
         $message->dest_id = $request->dest_id;
         $message->texte = $request->texte;
         $message->lu = 0;
+        $message->rendu_send = 0;
+        $message->rendu_dest = 0;
         $message->save();
     }
 
@@ -31,14 +33,23 @@ class MessageController extends Controller
     }
 
     public function discussion() {
+        if (!session()->has('id')) {
+            return redirect(route('login'));
+        }
         return view('ajaxView.users.messages.discussion');
     }
 
     public function notifications() {
+        if (!session()->has('id')) {
+            return redirect(route('login'));
+        }
         return view('ajaxView.users.messages');
     }
 
     public function nbMessages() {
+        if (!session()->has('id')) {
+            return redirect(route('login'));
+        }
         return view('ajaxView.users.nb_messages');
     }
 }

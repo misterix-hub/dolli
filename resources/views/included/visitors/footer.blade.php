@@ -5,6 +5,6 @@
     </a>
 
     <span class="float-right">
-        By <a href="">togbalazare5@gmail.com</a>
+        By <a href="">ngabalazare3@gmail.com</a>
     </span>
 </footer>
