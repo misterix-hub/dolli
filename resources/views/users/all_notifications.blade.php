@@ -8,7 +8,7 @@
             @include('included.users.profile_side_bar')
             <div class="col-lg-6 col-md-12 col-sm-12 font-size-13">   
                 <i class="fa fa-bell" aria-hidden="true"></i>
-                <b>Toutes les noifications</b><br />
+                <b>Toutes les notifications</b><br />
 
                 @forelse (App\Transaction::where('id_rcp', session()->get('id'))->where('confirme', 0)->orderByDesc('id')->get() as $transaction)
                     @foreach (App\User::where('id', $transaction->id_env)->get() as $user)
@@ -75,7 +75,7 @@
                 <!-- =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- -->
 
 
-                <hr />
+                
 
                 @forelse (App\Transaction::where('id_rcp', session()->get('id'))->where('confirme', 1)->orderByDesc('id')->get() as $transaction)
                     @foreach (App\User::where('id', $transaction->id_env)->get() as $user)

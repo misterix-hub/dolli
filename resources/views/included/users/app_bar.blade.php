@@ -77,16 +77,19 @@
                 <div class="dropdown-menu dropdown-menu-right font-size-13" aria-labelledby="triggerId">
                     <div class="text-center"><small>MESSAGES</small></div>
                     <div class="dropdown-divider"></div>
+                    <div class="text-center">
+                        <a class="dropdown-item text-primary" href="{{ route('allMessages') }}">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
+                            <b>Tous les anciens messages</b>
+                        </a>
+                    </div>
+                    <div class="dropdown-divider"></div>
                     <div class='font-size-13' style='height: 300px !important; overflow: auto; width: 300px;' aria-labelledby='triggerId;'>
                         <div id='messagesNotificationContainer' class='mb-2'>
                             <div class='text-center'>
                                 <img src='{{ URL::asset("assets/images/30.gif") }}' width='100'>
                             </div>
                         </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <div class="text-center">
-                        <a class="dropdown-item" href="{{ route('allMessages') }}">Tous les messages</a>
                     </div>
                 </div>
             </div>
@@ -115,16 +118,19 @@
                 <div class="dropdown-menu dropdown-menu-right font-size-13" aria-labelledby="triggerId">
                     <div class="text-center"><small>NOTIFICATIONS</small></div>
                     <div class="dropdown-divider"></div>
+                    <div class="text-center">
+                        <a class="dropdown-item text-primary" href="{{ route('allNotifications') }}">
+                            <i class="fa fa-archive" aria-hidden="true"></i>
+                            <b>Toutes les anciennes notifications</b>
+                        </a>
+                    </div>
+                    <div class="dropdown-divider"></div>
                     <div class='font-size-13' style='height: 350px !important; overflow: auto; width: 310px;' aria-labelledby='triggerId;'>
                         <div id='notificationContainer' class='mb-2'>
                             <div class='text-center'>
                                 <img src='{{ URL::asset("assets/images/30.gif") }}' width='100'>
                             </div>
                         </div>
-                    </div>
-                    <div class="dropdown-divider"></div>
-                    <div class="text-center">
-                        <a class="dropdown-item" href="{{ route('allNotifications') }}">Toutes les notifications</a>
                     </div>
                 </div>
             </div>

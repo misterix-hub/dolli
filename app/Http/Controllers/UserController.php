@@ -47,7 +47,7 @@ class UserController extends Controller
     
             session()->put('email', $request->email);
     
-            /*$to_name = "Dolli";
+            $to_name = "Dolli";
     
             $to_email = $request->email;
             $data = array(
@@ -58,7 +58,7 @@ class UserController extends Controller
             Mail::send('mails.code_password', $data, function ($message) use ($to_name, $to_email) {
                 $message->to($to_email)
                 ->subject("Confirmation email");
-            });*/
+            });
     
             return redirect(route('mail_sent'));
         }
@@ -111,9 +111,11 @@ class UserController extends Controller
         session()->put('nom_complet', $request->nom_complet);
 
         $tab = [
-            "a", "z", "e", "y", "u", "o", "p", "q", "g", "h", "l", "w", "x", "c",
-            "T", "I", "S", "D", "F", "G", "J", "K", "L", "M", "N", "V", "B", "A",
-            "?", "%", '$', "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Ç"
+            "a", "z", "e", "r", "t", "y", "u", "i", "o", "p", "q", "s", "d", "f",
+            "g", "h", "j", "k", "l", "m", "w", "x", "c", "v", "b", "n", "A", "Z",
+            "E", "R", "T", "Y", "U", "I", "O", "P", "Q", "S", "D", "F", "G", "H",
+            "J", "K", "L", "M", "W", "X", "C", "V", "B", "N", "0", "1", "2", "3",
+            "4", "5", "6", "7", "8", "9", "$", "P", "?", ";", "§", "-", ",", ":"
         ];
 
         $loop = true;

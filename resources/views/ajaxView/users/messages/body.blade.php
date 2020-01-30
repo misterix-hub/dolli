@@ -8,7 +8,7 @@ OR (user_id = ? AND dest_id = ?)', [session()->get('id'), $dest_id, $dest_id, se
                     <div>
                         <div style="background-color: #DDD; border-radius: 25px; line-height: 15px;"
                         class="font-size-13 pt-2 pb-2 pl-3 pr-3 float-left mb-1">
-                            {{ $message->texte }}
+                            {{ htmlspecialchars($message->texte) }}
                         </div>
                     </div>
                 </td>
@@ -26,7 +26,7 @@ OR (user_id = ? AND dest_id = ?)', [session()->get('id'), $dest_id, $dest_id, se
                     <div>
                         <div style="border-radius: 25px; line-height: 15px; background-color: #e66937;"
                         class="font-size-13 pt-2 pb-2 pl-3 pr-3 float-right mb-1 text-light">
-                            {{ $message->texte }}
+                            {{ htmlspecialchars($message->texte) }}
                         </div>
                     </div>
                 </td>

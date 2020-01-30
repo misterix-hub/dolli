@@ -16,7 +16,7 @@
                         <span class="sr-only">Close</span>
                     </button>
                     <b>Il est fortement recommandé de coppier les clés ci-dessus et de les garder en lieu sûr.
-                    Ce sont vos clés et elles vous seront lors de toutes vos transactions.</b>
+                    Ce sont vos clés et elles seront obligatoires lors de toutes vos transactions (envois et réceptions).</b>
                 </div><br />
 
                 <b>Clé privée</b>

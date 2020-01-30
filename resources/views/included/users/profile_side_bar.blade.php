@@ -1,14 +1,14 @@
 <div class="col-12 xs-show">
-    <div class="row pl-2 pr-2">         
-        <a class="btn btn-app btn-block col-4 m-0" data-toggle="modal" data-target="#modelEnvoyer">
-            <i class="fas fa-sort-amount-up" style="color: orange;"></i> Envoyer
-        </a>   
+    <div class="row pl-2 pr-2">           
         <a class="btn btn-app btn-block col-4 m-0" href="{{ route('uCompte') }}">
             <i class="fas fa-user-circle text-success"></i> Profil
         </a>    
         <a class="btn btn-app btn-block col-4 m-0" href="{{ route('uContacts') }}">
             <i class="fas fa-users text-primary"></i> Contacts
         </a>
+        <a class="btn btn-app btn-block col-4 m-0" data-toggle="modal" data-target="#modelEnvoyer">
+            <i class="fas fa-sort-amount-up" style="color: orange;"></i> Envoyer
+        </a> 
         <a href="#!" data-toggle="modal" data-target="#modelSolde" class="btn btn-default col-12 mb-2 pt-2 pb-2 btn-block font-size-13 mt-1">
             <b>Consulter mon solde</b>
         </a><br class="xs-hide" />
@@ -30,15 +30,15 @@
             </a>
         </div><br /><br />
         <div class="">
-            <div class="row pl-2 pr-2">         
-                <a class="btn btn-app btn-block col-4 m-0" data-toggle="modal" data-target="#modelEnvoyer">
-                    <i class="fas fa-sort-amount-up" style="color: orange;"></i> Envoyer
-                </a>   
+            <div class="row pl-2 pr-2">            
                 <a class="btn btn-app btn-block col-4 m-0" href="{{ route('uCompte') }}">
                     <i class="fas fa-user-circle text-success"></i> Profil
                 </a>    
                 <a class="btn btn-app btn-block col-4 m-0" href="{{ route('uContacts') }}">
                     <i class="fas fa-users text-primary"></i> Contacts
+                </a>
+                <a class="btn btn-app btn-block col-4 m-0" data-toggle="modal" data-target="#modelEnvoyer">
+                    <i class="fas fa-sort-amount-up" style="color: orange;"></i> Envoyer
                 </a>
             </div>
               
