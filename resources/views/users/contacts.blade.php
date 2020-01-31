@@ -14,7 +14,7 @@
                     </div>
                     @forelse (App\Contact::where('user1_id', session()->get('id'))->orWhere('user2_id', session()->get('id'))->get() as $contact)
                         @if ($contact->user1_id == session()->get('id'))    
-                            @foreach (App\User::where('id', session()->get('id'))->get() as $user)
+                            @foreach (App\User::where('id', $contact->user2_id)->get() as $user)
                                 <div class="col-md-4">
                                     <div class="card bg-light pt-2">
                                         <div class="card-body pt-0 pl-2 pr-2 pb-0">

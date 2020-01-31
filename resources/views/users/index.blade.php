@@ -8,6 +8,42 @@
             @include('included.users.profile_side_bar')
             <div class="col-md-6 col-sm-12">
 
+                @if ($message = Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        {{ $message }}
+                    </div>
+                @endif
+
+                <div class="font-size-14">
+                    <small><b>FAIRE UNE PUBLICATION</b></small>
+                </div>
+
+
+                <form action="{{ route('publicationStore') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div>
+                        <textarea name="texte" minlength="2" maxlength="300" id="texte"  rows="2" class="font-size-14 mb-2 form-control mt-2"
+                            style=""
+                            placeholder="Saisir la publication ici ..."></textarea>
+                    </div>
+                    <div>
+                        <label for="image" class="btn btn-default btn-sm">
+                            <i class="fas fa-file-image text-warning"></i>
+                            <small><b>Joindre une image ou photo</b></small>
+                        </label>
+                        <input type="file" id="image" name="image" accept="image/*" style="width: 0; height: 0; outline: none;">
+
+                        <button type="submit" style="background-color: #e66937;"
+                        class="btn pl-3 pr-3 font-size-14 float-right text-light">
+                            Partager
+                        </button>
+                    </div>
+                </form><br />
+
                 @forelse (App\Publication::orderByDesc('id')->get() as $publication)    
                     <!-- Box Comment -->
                     <div class="card card-widget font-size-14">

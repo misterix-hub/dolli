@@ -59,8 +59,8 @@ Route::get('register/datas', function () {
     if(!session()->has('password')) {
         return redirect(route('register'));
     } else {
-        Illuminate\Support\Facades\DB::delete("DELETE FROM code_emails WHERE email = ? AND code = ?", [
-            session()->get('email'), session()->get('code')
+        Illuminate\Support\Facades\DB::delete("DELETE FROM code_emails WHERE email = ?", [
+            session()->get('email')
         ]);
         return view('nom_profession');
     }

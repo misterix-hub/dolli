@@ -83,7 +83,7 @@
             $.ajax( {
                 url : "{{ route('nbNotification') }}",
                 success : function (status) {
-                    $('#nbNotification').html(status);
+                    $('small#nbNotification').html(status);
                 }
             });
         }, 3000);
@@ -110,10 +110,11 @@
             $.ajax( {
                 url : "{{ route('nbMessageNotification') }}",
                 success : function (status) {
-                    $('#nbMessageContainer').html(status);
+                    $('small#nbMessageContainer').html(status);
                 }
             });
         }, 3000);
+
     </script>
     
 </body>
